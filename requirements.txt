@@ -1,0 +1,8 @@
+dicttoxml==1.7.4
+click==7.1.2
+Flask==1.1.2
+itsdangerous==1.1.0
+Jinja2==2.11.2
+MarkupSafe==1.1.1
+-e git+git@git.foxminded.com.ua:orahmudri/task-6-report-of-monaco-2018-racing.git#egg=reporter
+Werkzeug==1.0.1
