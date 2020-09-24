@@ -1,8 +1,10 @@
+"""The database works logic."""
+
 from peewee import IntegerField, Model, SqliteDatabase, TextField
 
 from reporter.reporter import build_report
 
-PROJECT_PATH = '/home/user/Desktop/task-9-convert-and-store-data-to-the-database'
+PROJECT_PATH='/home/user/Desktop/task-9-convert-and-store-data-to-the-database'
 
 db = SqliteDatabase('report.db')
 
