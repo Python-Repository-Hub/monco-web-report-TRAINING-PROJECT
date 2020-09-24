@@ -28,7 +28,7 @@ def get_report_formated():
         return build_common_statistic_json()
     elif request.args.get('format') == 'xml':
         return build_common_statistic_xml()
-   
+
 
 @app.route('/report/')
 def show_report():
