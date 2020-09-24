@@ -4,6 +4,7 @@ from xml.dom.minidom import parseString
 from dicttoxml import dicttoxml
 from functools import lru_cache
 from json import dumps
+from database import convert_database_to_dict
 from reporter.reporter import (
     BEST_RESULTS_NUMBER,
     build_report,
@@ -12,7 +13,7 @@ from reporter.reporter import (
     )
 
 BORDERLINE_LENGHT = 72
-PROJECT_PATH = '/home/user/Desktop/task-8-rest-api-report-of-monaco-2018-racing'
+PROJECT_PATH = '/home/user/Desktop/task-9-convert-and-store-data-to-the-database'
 
 
 @lru_cache()
@@ -105,11 +106,11 @@ def build_common_statistic_json() -> str:
         str: json formated report
     """
     return dumps(
-        build_report(
-            f'{PROJECT_PATH}/web_report/log_files/',
-            return_type='dict_dict',
-            ), indent=4, separators=[', ', ' = '], ensure_ascii=False,
-            )
+        convert_database_to_dict(),
+        indent=4,
+        separators=[', ', ' = '],
+        ensure_ascii=False,
+        )
 
 
 def build_common_statistic_xml() -> str:
@@ -120,7 +121,9 @@ def build_common_statistic_xml() -> str:
         str: xml formated report
     """
     return parseString(
-        dicttoxml(build_report(
-            f'{PROJECT_PATH}/web_report/log_files/',
-            return_type='dict_dict',
-            ), custom_root='report', attr_type=False)).toprettyxml()
+        dicttoxml(
+            convert_database_to_dict(),
+            custom_root='report',
+            attr_type=False,
+            ),
+            ).toprettyxml()
