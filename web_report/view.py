@@ -7,8 +7,12 @@ from xml.dom.minidom import parseString
 from dicttoxml import dicttoxml
 from flask import Flask, render_template, request
 
-from models import (db_to_dict_for_json_xml, db_to_list_for_html,
-                     get_driver_statistic, get_drivers_and_codes)
+from models import (
+    db_to_dict_for_json_xml,
+    db_to_list_for_html,
+    get_driver_statistic,
+    get_drivers_and_codes,
+    )
 
 BEST_RESULTS_NUMBER = 15
 BORDERLINE_LENGHT = 72
