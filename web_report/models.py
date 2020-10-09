@@ -25,7 +25,7 @@ def db_to_dict_for_json_xml(database_path: str) -> dict:
         database_path (str): Database file path
 
     Returns:
-        dict: a xml-or-json format usable dict 
+        dict: a xml-or-json format usable dict
     """
     Racers.bind(SqliteDatabase(database_path))
     racers = Racers.select()
