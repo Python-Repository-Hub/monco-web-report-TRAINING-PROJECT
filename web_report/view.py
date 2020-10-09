@@ -60,7 +60,7 @@ def build_common_statistic(order: str) -> str:
     Returns:
         [str]: The table of statistic
     """
-    report = db_to_list_for_html(DATABASE_PATH)
+    report = db_to_list_for_html(DATABASE_PATH, ' |')
     # Insert the borderline between the best results and rest
     report.insert(BEST_RESULTS_NUMBER, '-' * BORDERLINE_LENGHT)
     if order == 'desc':  # For descending order
