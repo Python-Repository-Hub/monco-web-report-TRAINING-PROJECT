@@ -6,10 +6,10 @@ from sys import path
 path.append(
     '/home/user/Desktop/Task_7_-_Web_report_of_Monaco_2018_Racing/web_report',
     )
-from logic import build_common_statistic, build_driver
+from web_report.view import build_common_statistic, build_driver
 
 
-class TestReporterMethods(unittest.TestCase):
+class TestReporterMethods(TestCase):
     def test_build_common_statistic_invalid_arg(self):
         with self.assertRaises(ValueError):
             common_statistic = build_common_statistic('anyorder')
