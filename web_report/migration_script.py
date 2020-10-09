@@ -7,7 +7,7 @@ from reporter.reporter import build_report
 
 
 def send_report_to_database(log_files_path: str, db_path: str):
-    """Migrate the logfiles data to the database."""
+    """Put the logfiles data to the database."""
     database = SqliteDatabase(db_path)
     Racers.bind(database)
     Racers.create_table()
@@ -37,7 +37,7 @@ if __name__ == "__main__":
         '--database',
         action='store',
         dest='db',
-        help='the database folder path',
+        help='the database file path',
         )
     args = parser.parse_args()
     send_report_to_database(args.path, args.db)
