@@ -15,7 +15,7 @@ from models import (
 
 BEST_RESULTS_NUMBER = 15
 BORDERLINE_LENGHT = 72
-DATABASE_PATH = '/home/user/Desktop/task-9-convert-and-store-data-to-the-database/report.db'
+DATABASE_PATH = __file__.replace('web_report/view.py', 'report.db')
 
 
 app = Flask(__name__)  # Init the flask application
