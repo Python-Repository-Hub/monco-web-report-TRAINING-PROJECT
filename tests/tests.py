@@ -3,9 +3,7 @@
 from unittest import TestCase, main
 from sys import path
 
-path.append(
-    '/home/user/Desktop/Task_7_-_Web_report_of_Monaco_2018_Racing/web_report',
-    )
+path.append(__file__.replace('tests/tests.py', 'web_report/'))
 from web_report.view import build_common_statistic, build_driver
 
 

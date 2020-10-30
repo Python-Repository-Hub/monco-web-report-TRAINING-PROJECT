@@ -60,7 +60,10 @@ def show_report():
     """
     order = request.args.get('order')
     template = 'common_statistic.html'
-    if order not in {'asc', 'desc', None}:
+    try:
+        if order not in {'asc', 'desc', None}:
+            raise ValueError('An order value must be ´asc´ or ´desc´')
+    except ValueError:
         return render_template(template, error='invalid_order')
     try:
         data = db_to_list_for_html(DATABASE_PATH, ' |')
