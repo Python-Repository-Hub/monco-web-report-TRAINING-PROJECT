@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>
+      {% if error == 'unknown_code' %}  
+        ERROR
+      {% else %}
+        {{ data['name'] }}
+      {% endif %}
+    </title>
+  </head>
+  <body>
+    <h1>
+      {% if error == 'unknown_code' %}  
+        <font color="red">ERROR</font>
+      {% else %}
+        {{ data['name'] }}
+      {% endif %}
+    </h1>
+    <body>
+      {% if error == 'unknown_code' %}  
+        <font color="red">This driver does not exist</font>
+      {% else %}
+        {{ data['driver_statistic'] }}
+      {% endif %}
+    </body>
+  </body>
+</html>

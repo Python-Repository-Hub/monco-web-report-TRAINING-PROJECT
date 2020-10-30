@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>
+      Common statistic
+    </title>
+  </head>
+  <body>
+    <h1>
+      Common statistic:
+    </h1>
+    <body>
+      {% if error == 'data_unevalable' %}
+        <font color="red">Racing report unevalable</font>
+      {% elif error == 'invalid_order' %}
+        <font color="red">Unexpected order</font>
+      {% else %}
+        {% for string in data %}
+          <p>{{string}}</p>
+        {% endfor %}
+      {% endif %}
+    </body>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>
+      Drivers and codes
+    </title>
+  </head>
+  <body>
+    <h1>
+      Drivers and codes:
+    </h1>
+    <body>
+      {% if error == 'data_unevalable' %}
+        <font color="red">Drivers list can not be build.</font>
+      {% else %}
+        {% for code, name in data.items() %}
+          <p>
+            {{name}} <a href="/report/drivers/?driver_id={{code}}">{{code}}</a>
+          </p>
+        {% endfor %}
+      {% endif %}
+    </body>
+  </body>
+</html>
