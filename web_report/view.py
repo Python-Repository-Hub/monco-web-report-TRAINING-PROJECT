@@ -1,6 +1,7 @@
 """Monaco 2018 Racing Web-Report module."""
 
 from json import dumps
+from os.path import dirname, join
 from xml.dom.minidom import parseString
 
 from dicttoxml import dicttoxml
@@ -10,12 +11,12 @@ from models import (
     db_to_dict_for_json_xml,
     db_to_list_for_html,
     get_driver_statistic,
-    get_drivers_and_codes,
+    get_drivers_and_codes
     )
 
 BEST_RESULTS_NUMBER = 15
 BORDERLINE_LENGHT = 72
-DATABASE_PATH = __file__.replace('web_report/view.py', 'report.db')
+DATABASE_PATH = join(dirname(dirname(__file__)), 'report.db')
 
 
 app = Flask(__name__)  # Init the flask application
