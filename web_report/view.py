@@ -29,6 +29,8 @@ def get_report_formated():
         [type]: Response in json or xml format
     """
     report_format = request.args.get('format')
+    if report_format is None:
+        report_format = 'json'
     if report_format not in {'json', 'xml'}:
         return {
             "status": 400,
