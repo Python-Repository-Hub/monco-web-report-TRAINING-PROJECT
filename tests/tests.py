@@ -2,19 +2,19 @@
 
 from unittest import TestCase, main
 from sys import path
+from os.path import dirname
 
-path.append(__file__.replace('tests/tests.py', 'web_report/'))
-from web_report.view import build_common_statistic, build_driver
+path.append(dirname(dirname(__file__)))
 
+from web_report.models import get_driver_statistic
 
 class TestReporterMethods(TestCase):
-    def test_build_common_statistic_invalid_arg(self):
-        with self.assertRaises(ValueError):
-            common_statistic = build_common_statistic('anyorder')
-
-    def test_build_driver_invalid_arg(self):
-        with self.assertRaises(ValueError):
-            driver = build_driver('AAA')
+    def test_get_driver_statistic_invalid_arg(self):
+        with self.assertRaises(Exception):
+            driver = get_driver_statistic(
+'/home/user/Desktop/task-9-convert-and-store-data-to-the-database/report.db',
+'AAA',
+)
 
 
 if __name__ == '__main__':
