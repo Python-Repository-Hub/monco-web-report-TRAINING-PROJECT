@@ -29,15 +29,8 @@ def get_report_formated():
     Returns:
         [type]: Response in json or xml format
     """
-    report_format = request.args.get('format')
-    if report_format is None:
-        report_format = 'json'
-    if report_format not in {'json', 'xml'}:
-        return {
-            "status": 400,
-            "message": "Bad Request",
-            }
-    elif report_format == 'json':
+    report_format = request.args.get('format', 'json')
+    if report_format == 'json':
         return dumps(
             db_to_dict_for_json_xml(DATABASE_PATH),
             indent=4,
@@ -52,6 +45,11 @@ def get_report_formated():
                 attr_type=False,
                 ),
                 ).toprettyxml()
+    else:
+        return {
+            "status": 400,
+            "message": "Bad Request",
+            }
 
 
 @app.route('/report/')
@@ -61,21 +59,19 @@ def show_report():
     Returns:
         Render the template
     """
-    order = request.args.get('order')
+    order = request.args.get('order', 'asc')
     template = 'common_statistic.html'
-    try:
-        if order not in {'asc', 'desc', None}:
-            raise ValueError('An order value must be ´asc´ or ´desc´')
-    except ValueError:
+    if order not in ('asc', 'desc'):
         return render_template(template, error='invalid_order')
     try:
         data = db_to_list_for_html(DATABASE_PATH, ' |')
+    except Exception:
+        return render_template(template, error='data_unevalable')
+    else:
         data.insert(BEST_RESULTS_NUMBER, '-' * BORDERLINE_LENGHT)
         if order == 'desc':
             data.reverse()
         return render_template(template, data=data)
-    except Exception:
-        return render_template(template, error='data_unevalable')
 
 
 @app.route('/report/drivers/')
@@ -89,20 +85,18 @@ def show_report_drivers():
     if driver_id:
         template = 'driver_statistic.html'
         try:
-            return render_template(
-                template,
-                data=get_driver_statistic(DATABASE_PATH, driver_id),
-                )
+            data = get_driver_statistic(DATABASE_PATH, driver_id)
         except Exception:
             return render_template(template, error='unknown_code')
+        else:
+            return render_template(template, data=data)
     template = 'drivers_and_codes.html'
     try:
-        return render_template(
-            template,
-            data=get_drivers_and_codes(DATABASE_PATH),
-            )
+        data = get_drivers_and_codes(DATABASE_PATH)
     except Exception:
         return render_template(template, error='data_unevalable')
+    else:
+        return render_template(template, data=data)
 
 
 if __name__ == '__main__':
