@@ -88,7 +88,7 @@ def get_driver_statistic(database_path: str, code: str) -> dict:
     Racers.bind(SqliteDatabase(database_path))
     driver = Racers.get_by_id(code)
     name = driver.racer_name
-    record = model_to_dict(driver, exclude=[Racers.ABR, Racers.racer_name])
+    record = model_to_dict(driver, exclude=[Racers.abr, Racers.racer_name])
     record['position'] = str(record['position'])
     return {
         'name': name,
