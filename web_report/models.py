@@ -11,7 +11,7 @@ class Racers(Model):
         Model (class): The class Racers inherit
     """
     position = IntegerField(null=False)
-    ABR = TextField(primary_key=True)
+    abr = TextField(primary_key=True)
     racer_name = TextField(null=False)
     team = TextField(null=False)
     time = TextField(null=False)
@@ -32,7 +32,7 @@ def db_to_dict_for_json_xml(database_path: str) -> dict:
     result = {}
     for item in racers.execute():
         record = model_to_dict(item)
-        result[record.pop('ABR')] = record
+        result[record.pop('abr')] = record
     return result
 
 
@@ -50,7 +50,7 @@ def db_to_list_for_html(database_path: str, sep: str) -> list:
     racers = Racers.select()
     result = []
     for item in racers.execute():
-        record = model_to_dict(item, exclude=[Racers.ABR])
+        record = model_to_dict(item, exclude=[Racers.abr])
         record['position'] = str(record['position'])
         result.append(sep.join(list(record.values())))
     return result
@@ -67,11 +67,11 @@ def get_drivers_and_codes(database_path: str) -> dict:
         dict: name-codelink chart making usable one
     """
     Racers.bind(SqliteDatabase(database_path))
-    racers = Racers.select(Racers.racer_name, Racers.ABR)
+    racers = Racers.select(Racers.racer_name, Racers.abr)
     result = {}
     for item in racers.execute():
-        record = model_to_dict(item, only=[Racers.racer_name, Racers.ABR])
-        result[record['ABR']] = record['racer_name']
+        record = model_to_dict(item, only=[Racers.racer_name, Racers.abr])
+        result[record['abr']] = record['racer_name']
     return result
 
 

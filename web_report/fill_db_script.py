@@ -15,7 +15,7 @@ def send_report_to_database(log_files_path: str, db_path: str):
     for abb, data in report_dict.items():
         Racers.create(
             position=data['position'],
-            ABR=abb,
+            abr=abb,
             racer_name=data['racer_name'],
             team=data['team'],
             time=data['time'],
